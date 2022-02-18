@@ -5,10 +5,10 @@ ENV CGO_ENABLED=0
 WORKDIR /workdir
 
 COPY go.mod go.sum ./
-RUN go mod download
+RUN --mount=type=cache,target=/go/pkg/mod go mod download
 
 COPY . .
-RUN go build -o app .
+RUN --mount=type=cache,target=/root/.cache/go-build go build -o app .
 
 FROM gcr.io/distroless/static-debian11:latest
 
