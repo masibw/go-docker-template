@@ -10,7 +10,7 @@ func NewServer(userHandler *handler.UserHandler) (e *gin.Engine) {
 	e.Use(gin.Logger())
 	e.Use(gin.Recovery())
 
-	v1 := e.Group("/api/v1")
+	v1 := e.Group("/api/v2")
 
 	users := v1.Group("/users")
 	users.GET(":id", userHandler.GetUser)
